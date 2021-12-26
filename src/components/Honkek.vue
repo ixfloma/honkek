@@ -115,7 +115,7 @@ export default{
       monthlyCheck: false,
       activeArmada: true,
       currentCrystal : '',
-      monthlyProgress: '0',
+      monthlyProgress: '',
       bracket: 'Exalted',
       abyssRank: '500',
       memorial: '100',
@@ -379,7 +379,14 @@ export default{
       return total
     },
     totalAllComputed: function(){
-      var total = this.dailyRewards + this.abyssTotalReward + this.memorialArenaReward + this.armadaReward + this.monthlyTotal + this.currentCrystal
+      var total = this.dailyRewards + this.abyssTotalReward + this.memorialArenaReward
+      if(this.activeArmada){
+        total = total + this.armadaReward
+      }
+      if(this.monthlyCheck){
+        total = total + this.monthlyTotal
+      }
+      total = total + this.currentCrystal
       return total
     }
   }
@@ -388,6 +395,7 @@ export default{
 </script>
 
 <style scoped>
+
 /* Chrome, Safari, Edge, Opera */
 #currentCrystal::-webkit-outer-spin-button,
 #currentCrystal::-webkit-inner-spin-button {
